@@ -1,0 +1,150 @@
+{
+  "info": {
+    "name": "CareerOS API",
+    "_postman_id": "2b30d4d4-67d1-4a12-b4a7-93ea3554d83f",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "health"]
+        }
+      }
+    },
+    {
+      "name": "Auth Register",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Sassy\",\n  \"email\": \"sassy@example.com\",\n  \"password\": \"Password123!\",\n  \"preferences\": {\n    \"roles\": [\"Full Stack Developer\"],\n    \"stack\": [\"React\", \"Node.js\"],\n    \"minSalary\": 120000,\n    \"vibe\": \"startup\"\n  }\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/auth/register",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "auth", "register"]
+        }
+      }
+    },
+    {
+      "name": "Auth Login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"sassy@example.com\",\n  \"password\": \"Password123!\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/auth/login",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "auth", "login"]
+        }
+      }
+    },
+    {
+      "name": "Auth Me (Bearer)",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/auth/me",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "auth", "me"]
+        }
+      }
+    },
+    {
+      "name": "Preferences Step 1",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"roles\": [\"Backend Engineer\"],\n  \"stack\": [\"Node.js\", \"TypeScript\", \"MongoDB\"]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/preferences/onboarding/step-1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "preferences", "onboarding", "step-1"]
+        }
+      }
+    },
+    {
+      "name": "Preferences Step 2",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"minSalary\": 130000,\n  \"vibe\": \"midsize\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/preferences/onboarding/step-2",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "preferences", "onboarding", "step-2"]
+        }
+      }
+    },
+    {
+      "name": "Preferences Step 3",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"targetLocations\": [\"New York\", \"Remote - US\"],\n  \"jobType\": \"remote\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/preferences/onboarding/step-3",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "preferences", "onboarding", "step-3"]
+        }
+      }
+    },
+    {
+      "name": "Get My Preferences",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/preferences/me",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "preferences", "me"]
+        }
+      }
+    },
+    {
+      "name": "Admin Metrics",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/admin/metrics",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "admin", "metrics"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" },
+    { "key": "accessToken", "value": "" }
+  ]
+}
