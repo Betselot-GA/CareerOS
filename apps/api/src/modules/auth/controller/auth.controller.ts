@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { env } from "../../../core/config/env";
 import { AppError } from "../../../core/errors/AppError";
-import { getCurrentUser, loginUser, registerUser } from "../service/auth.service";
+import { getCurrentUser, loginUser, loginWithGoogle, registerUser } from "../service/auth.service";
 
 const setAuthCookie = (res: Response, token: string): void => {
   res.cookie("accessToken", token, {
@@ -21,6 +21,12 @@ export const register = async (req: Request, res: Response): Promise<void> => {
 
 export const login = async (req: Request, res: Response): Promise<void> => {
   const result = await loginUser(req.body);
+  setAuthCookie(res, result.accessToken);
+  res.status(200).json({ success: true, data: result });
+};
+
+export const googleLogin = async (req: Request, res: Response): Promise<void> => {
+  const result = await loginWithGoogle(req.body);
   setAuthCookie(res, result.accessToken);
   res.status(200).json({ success: true, data: result });
 };

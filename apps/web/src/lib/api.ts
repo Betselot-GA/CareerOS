@@ -48,5 +48,18 @@ export const api = {
     const payload = await response.json();
     if (!response.ok) throw new Error(payload.message ?? "Request failed");
     return payload;
+  },
+  async delete<T>(path: string): Promise<T> {
+    const response = await fetch(`${API_BASE_URL}${path}`, {
+      method: "DELETE",
+      headers: {
+        ...authHeaders()
+      },
+      credentials: "include"
+    });
+
+    const payload = await response.json();
+    if (!response.ok) throw new Error(payload.message ?? "Request failed");
+    return payload;
   }
 };
